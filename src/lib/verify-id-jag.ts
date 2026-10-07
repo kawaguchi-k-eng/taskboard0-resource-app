@@ -25,11 +25,17 @@ function getOwnAudience(): string {
 }
 
 function getTrustedIssuer(): TrustedIssuerConfig {
-  const issuer = process.env.OKTA_ISSUER;
-  if (!issuer) throw new Error('Missing OKTA_ISSUER environment variable');
+  // The ID-JAG is minted by Okta's ORG authorization server (never a custom
+  // one like /oauth2/default, even though that's correct for normal
+  // sign-in) — so its `iss` and signing key both come from the org root,
+  // not from OKTA_ISSUER as configured for sign-in.
+  const configuredIssuer = process.env.OKTA_ISSUER;
+  if (!configuredIssuer) throw new Error('Missing OKTA_ISSUER environment variable');
+  const orgRoot = new URL(configuredIssuer).origin;
+
   return {
-    issuer,
-    jwksUri: process.env.OKTA_JWKS_URI ?? `${issuer}/v1/keys`,
+    issuer: process.env.OKTA_ORG_ISSUER ?? orgRoot,
+    jwksUri: process.env.OKTA_JWKS_URI ?? `${orgRoot}/oauth2/v1/keys`,
   };
 }
 
