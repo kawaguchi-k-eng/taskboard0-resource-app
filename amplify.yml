@@ -6,6 +6,11 @@ frontend:
         - npm ci
     build:
       commands:
+        # Next.js SSR can't see Amplify Console env vars at runtime by default —
+        # they're build-phase only. Write the ones this app needs into
+        # .env.production so they're baked in for the server at request time.
+        # https://docs.aws.amazon.com/amplify/latest/userguide/ssr-environment-variables.html
+        - env | grep -e OKTA_ISSUER -e OKTA_JWKS_URI -e RESOURCE_AUDIENCE -e TRUSTED_REQUESTING_APP_CLIENT_IDS -e ACCESS_TOKEN_SIGNING_SECRET >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next
