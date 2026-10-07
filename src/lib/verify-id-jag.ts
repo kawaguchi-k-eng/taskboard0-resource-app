@@ -86,9 +86,9 @@ export async function verifyIdJag(idJag: string): Promise<VerifiedIdJag> {
   }
 
   if (process.env.DEBUG_LOG_ID_JAG_CLAIMS === 'true') {
-    // Temporary: inspect the real claims Okta puts in the ID-JAG so we can
-    // set TRUSTED_REQUESTING_APP_CLIENT_IDS to the right value. Remove once
-    // confirmed.
+    // Opt-in diagnostic: see exactly what a given Okta org puts in the
+    // ID-JAG (e.g. the client_id/cid claim) before deciding
+    // TRUSTED_REQUESTING_APP_CLIENT_IDS. Off by default.
     console.log('[verify-id-jag] decoded ID-JAG payload:', payload);
   }
 
