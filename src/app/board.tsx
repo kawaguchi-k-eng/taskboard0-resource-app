@@ -32,7 +32,7 @@ export default function Board() {
     };
   }, []);
 
-  if (!snapshot) return <p>Loading board…</p>;
+  if (!snapshot) return <p>ボードを読み込み中…</p>;
 
   const states = [...snapshot.workflowStates].sort((a, b) => a.order - b.order);
 

@@ -15,12 +15,12 @@ export type Issue = {
   updatedAt: string;
 };
 
-const teams: Team[] = [{ id: 'team_eng', key: 'ENG', name: 'Engineering' }];
+const teams: Team[] = [{ id: 'team_eng', key: 'ENG', name: 'エンジニアリング' }];
 
 const workflowStates: WorkflowState[] = [
-  { id: 'state_todo', name: 'Todo', teamId: 'team_eng', order: 0 },
-  { id: 'state_in_progress', name: 'In Progress', teamId: 'team_eng', order: 1 },
-  { id: 'state_done', name: 'Done', teamId: 'team_eng', order: 2 },
+  { id: 'state_todo', name: '未着手', teamId: 'team_eng', order: 0 },
+  { id: 'state_in_progress', name: '進行中', teamId: 'team_eng', order: 1 },
+  { id: 'state_done', name: '完了', teamId: 'team_eng', order: 2 },
 ];
 
 let issueSequence = 2;
@@ -28,8 +28,8 @@ const issues: Issue[] = [
   {
     id: 'issue_1',
     identifier: 'ENG-1',
-    title: 'Set up Cross App Access with Okta',
-    description: 'Wire up the XAA resource server token endpoint.',
+    title: 'Okta で Cross App Access を設定する',
+    description: 'XAA リソースサーバーのトークンエンドポイントを実装する。',
     teamId: 'team_eng',
     stateId: 'state_in_progress',
     updatedAt: new Date().toISOString(),
@@ -37,7 +37,7 @@ const issues: Issue[] = [
   {
     id: 'issue_2',
     identifier: 'ENG-2',
-    title: 'Design the kanban board UI',
+    title: 'カンバンボードの UI をデザインする',
     teamId: 'team_eng',
     stateId: 'state_todo',
     updatedAt: new Date().toISOString(),

@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Taskboard0",
-  description: "Demo XAA resource app: a tiny Linear-style issue tracker",
+  description: "XAA デモ用リソースアプリ：Linear 風の小さな課題管理ツール",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ja" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );
